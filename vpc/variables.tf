@@ -1,4 +1,4 @@
-vatiable "namespace" {
+variable "namespace" {
   description = "Project namespace to be used for unique resource naming"
   type        = string
 }
