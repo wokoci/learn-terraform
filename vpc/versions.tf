@@ -6,12 +6,12 @@ terraform {
       version = "~>3.28"
     }
     random = {
-      source   = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "~>3.0"
     }
     cloudinit = {
-      source = "hashicorp/cloudinit"
-      version   = "~>2.1"
+      source  = "hashicorp/cloudinit"
+      version = "~>2.1"
     }
   }
 }
