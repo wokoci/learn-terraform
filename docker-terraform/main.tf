@@ -14,14 +14,14 @@ resource "docker_image" "nodered_image" {
 }
 
 resource "random_string" "random" {
-  count   = 2
+  count   = 1
   length  = 4
   upper   = false
   special = false
 }
 
 resource "docker_container" "docker_nodered_image" {
-  count = 2
+  count = 1
   name  = join("-", ["nodered", random_string.random[count.index].result])
   image = docker_image.nodered_image.latest
   ports {
@@ -35,7 +35,7 @@ output "container-name" {
   value       = docker_container.docker_nodered_image[*].name
 }
 
-
+#opproduce the output of the ip address when its been assigned
 output "ip-address" {
   description = "details about external ip address to running node-red "
   value       =  [for i in docker_container.docker_nodered_image[*]: join(":",[i.ip_address],[i.ports[0].external])]
