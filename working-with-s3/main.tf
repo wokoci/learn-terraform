@@ -6,6 +6,7 @@ resource "aws_s3_bucket" "admin" {
   }
 }
 # add objects to thw bucket 
+
 resource "aws_s3_object" "admin-files" {
   content = "working-with-s3/resilientarchitecture_(1)_21_46.png"
   key     = "resilientarchitecture_(1)_21_46.png"
@@ -15,23 +16,27 @@ resource "aws_s3_object" "admin-files" {
 # create a data resource for the iam group
 data "aws_iam_group" "appdevelopment-data" {
   group_name = "appdevelopment"
+#   try appdevelopment after this if it fails
 }
+
 #  create a bucket bolicy for the bucket to allow access from the group of developers
 resource "aws_s3_bucket_policy" "developer-policy" {
   bucket = aws_s3_bucket.admin.id
   policy = <<-EOF
    {
     "Version":"2012-10-17",
-    "Statement":[{
-        "Action":"Allow",
-        "Effect":"Allow",
-         "Resource":"arn:aws:s3:::${aws_s3_bucket.admin.id}/*",
-        "Principal":{
-            "AWS":[
-                "${data.aws_iam_group.appdevelopment-data.arn}"
-            ]
-        }
-   } ]
+    "Statement":[
+        {
+            "Action":"*",
+            "Effect":"Allow",
+            "Resource":"arn:aws:s3:::${aws_s3_bucket.admin.id}/*",
+            "Principal":{
+                "AWS": [
+                    "${data.aws_iam_group.appdevelopment-data.arn}"
+                ]
+            }
+        } 
+    ]
    }
    EOF
 }
