@@ -1,6 +1,4 @@
-provider "aws" {
-  region = "us-east-1"
-}
+
 
 resource "aws_iam_user" "admin-user" {
   name = "jamesw"
@@ -12,7 +10,7 @@ resource "aws_iam_user" "admin-user" {
 
 resource "aws_iam_policy" "adminUser" {
   name   = "AdminUsers"
-  policy =  file("admin-policy.json")
+  policy = file("admin-policy.json")
 }
 
 resource "aws_iam_user_policy_attachment" "lames-admin-access" {
