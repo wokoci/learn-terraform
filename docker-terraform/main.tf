@@ -38,5 +38,5 @@ output "container-name" {
 #opproduce the output of the ip address when its been assigned
 output "ip-address" {
   description = "details about external ip address to running node-red "
-  value       =  [for i in docker_container.docker_nodered_image[*]: join(":",[i.ip_address],[i.ports[0].external])]
+  value       = [for i in docker_container.docker_nodered_image[*] : join(":", [i.ip_address], [i.ports[0].external])]
 }

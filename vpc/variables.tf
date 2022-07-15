@@ -5,8 +5,8 @@ variable "namespace" {
 
 variable "ssh_keypair" {
   description = "SSH keypair to use for em2 instnces"
-  type        = string
   default     = null
+  type        = string
 }
 
 variable "region" {

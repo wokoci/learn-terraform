@@ -3,7 +3,7 @@ output "vpc" {
 }
 
 output "sg" {
-  value = module.lb_sg.security_group.id
-  #   db     = module.db_sg.security_group.id
-  #   websvr = module.websvr_sg.security_group.id
+  value  = module.lb_sg.security_group.id
+  db     = module.db_sg.security_group.id
+  websvr = module.websvr_sg.security_group.id
 }

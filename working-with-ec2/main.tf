@@ -16,8 +16,8 @@ resource "aws_instance" "webServer" {
                 sudo systemctl start nginx
                 EOF
 
-    key_name = aws_key_pair.webKey.id
-    vpc_security_group_ids = [aws_security_group.ssh_access.id]
+  key_name               = aws_key_pair.webKey.id
+  vpc_security_group_ids = [aws_security_group.ssh_access.id]
 }
 
 resource "aws_key_pair" "webKey" {
@@ -25,16 +25,15 @@ resource "aws_key_pair" "webKey" {
 }
 
 resource "aws_security_group" "ssh_access" {
-  name ="ssh acces"
+  name        = "ssh acces"
   description = "Sg to allow access from internet"
-  ingress = [ {
-    cidr_blocks = [ "0.0.0.0/0" ]
-    description = "value"
-    from_port = 22
-    to_port=22
-    protocol = "tpc"
-    security_groups = [ "value" ]
-  } ]
+  ingress = {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tpc"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
 }
 
+ 

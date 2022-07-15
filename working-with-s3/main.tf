@@ -16,7 +16,7 @@ resource "aws_s3_object" "admin-files" {
 # create a data resource for the iam group
 data "aws_iam_group" "appdevelopment-data" {
   group_name = "appdevelopment"
-#   try appdevelopment after this if it fails
+  #   try appdevelopment after this if it fails
 }
 
 #  create a bucket bolicy for the bucket to allow access from the group of developers
